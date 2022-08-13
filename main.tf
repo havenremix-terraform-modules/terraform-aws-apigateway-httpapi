@@ -45,7 +45,7 @@ resource "aws_apigatewayv2_route" "api_route" {
 resource "aws_apigatewayv2_integration" "api_lambda_integration" {
     for_each = var.create ? var.routes : {}
     api_id = aws_apigatewayv2_api.this[0].id
-    integration_type = "HTTP_PROXY"
+    integration_type = "AWS_PROXY"
 
     connection_type = "INTERNET"
     description = ""
