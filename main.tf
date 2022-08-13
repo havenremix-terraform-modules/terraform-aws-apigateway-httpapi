@@ -33,19 +33,19 @@ resource "aws_apigatewayv2_route" "api_route" {
     route_key = "${each.value["method"]} /${each.value["path"]}"
 }
 
-#ROUTE RESPONSES
-resource "aws_apigatewayv2_route_response" "api_route_response" {
-    for_each = var.create ? var.routes : {}
-    api_id = aws_apigatewayv2_api.this[0].id
-    route_id = aws_apigatewayv2_route.api_route[each.key].id
-    route_response_key = "$default"
-}
+# #ROUTE RESPONSES
+# resource "aws_apigatewayv2_route_response" "api_route_response" {
+#     for_each = var.create ? var.routes : {}
+#     api_id = aws_apigatewayv2_api.this[0].id
+#     route_id = aws_apigatewayv2_route.api_route[each.key].id
+#     route_response_key = "$default"
+# }
 
 #LAMBDA INTEGRATION
 resource "aws_apigatewayv2_integration" "api_lambda_integration" {
     for_each = var.create ? var.routes : {}
     api_id = aws_apigatewayv2_api.this[0].id
-    integration_type = "AWS_PROXY"
+    integration_type = "ANY"
 
     connection_type = "INTERNET"
     description = ""
