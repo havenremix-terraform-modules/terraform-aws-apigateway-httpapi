@@ -54,13 +54,13 @@ resource "aws_apigatewayv2_integration" "api_lambda_integration" {
 }
 
 #INTEGRATION RESPONSES
-resource "aws_apigatewayv2_integration_response" "api_integration_response" {
-    for_each = var.create ? var.routes : {}
-    api_id = aws_apigatewayv2_api.this[0].id
+# resource "aws_apigatewayv2_integration_response" "api_integration_response" {
+#     for_each = var.create ? var.routes : {}
+#     api_id = aws_apigatewayv2_api.this[0].id
 
-    integration_id = aws_apigatewayv2_integration.api_lambda_integration[each.key].id
-    integration_response_key = "/200/"
-}
+#     integration_id = aws_apigatewayv2_integration.api_lambda_integration[each.key].id
+#     integration_response_key = "/200/"
+# }
 
 #DEPLOYMENT
 resource "aws_apigatewayv2_deployment" "api_deployment" {
