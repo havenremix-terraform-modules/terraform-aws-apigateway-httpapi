@@ -48,7 +48,7 @@ resource "aws_apigatewayv2_integration" "api_lambda_integration" {
     integration_type = "AWS_PROXY"
 
     connection_type = "INTERNET"
-    description = each.value["description"]
+    description = ""
     integration_method = each.value["method"]
     integration_uri = each.value["integration"]
 }
