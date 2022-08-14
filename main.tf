@@ -65,10 +65,10 @@ resource "aws_apigatewayv2_integration" "api_lambda_integration" {
 #DEPLOYMENT
 resource "aws_apigatewayv2_deployment" "api_deployment" {
     count = var.create ? 1 : 0
-    api_id = aws_apigatewayv2_route.api_route[each.key].api_id
+    api_id = aws_apigatewayv2_api.this[0].id
 
     lifecycle {
-      create_before_destroy = true
+        create_before_destroy = true
     }
 }
 
